@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ana Rosario Luna · 8 direcciones de diseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#F6F2EA; --bg-2:#EBE3D2; --ink:#211E1A; --ink-2:#5C5246; --mute:#9A8E80; --line:#D6CAB1; --accent:#B05A3C;
+  --serif:"Cormorant Garamond", Georgia, serif;
+  --sans:"Plus Jakarta Sans", system-ui, sans-serif;
+  --mono:"JetBrains Mono", monospace;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;font-weight:400;letter-spacing:-.015em}
+h1{font-family:var(--serif);font-size:clamp(48px,6vw,84px);line-height:1.05}
+h2{font-family:var(--serif);font-size:clamp(28px,2.4vw,40px);line-height:1.1}
+h3{font-family:var(--serif);font-size:24px;line-height:1.2}
+p{margin:0;color:var(--ink-2)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+@media(max-width:720px){.wrap{padding:0 24px}}
+
+/* Header */
+header{padding:32px 0;border-bottom:1px solid var(--line)}
+.head-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:20px}
+.brand .mark{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-style:italic;font-size:15px}
+.brand em{font-style:italic;color:var(--ink-2)}
+.head-meta{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.head-meta .dot{display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin-right:8px;vertical-align:middle}
+
+/* Hero */
+.intro{padding:88px 0 64px}
+.intro-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end}
+@media(max-width:920px){.intro-grid{grid-template-columns:1fr;gap:32px}}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+.intro h1{margin-top:24px;text-wrap:balance}
+.intro h1 em{font-style:italic;color:var(--ink-2);font-weight:400}
+.intro h1 .acc{color:var(--accent)}
+.intro-sub{font-size:18px;line-height:1.6;max-width:48ch;color:var(--ink-2);font-family:var(--serif);font-style:italic;font-size:22px}
+.intro-meta{display:grid;grid-template-columns:repeat(3,auto);gap:32px;margin-top:24px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.intro-meta strong{display:block;font-family:var(--sans);font-size:14px;color:var(--ink);letter-spacing:.02em;text-transform:none;margin-top:4px;font-weight:500}
+
+/* Designs grid */
+.designs{padding:48px 0 120px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+@media(max-width:920px){.grid{grid-template-columns:1fr}}
+.card{background:var(--bg-2);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s ease,box-shadow .35s ease;border:1px solid var(--line)}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 48px -20px rgba(40,30,15,.15)}
+.card .preview{aspect-ratio:16/10;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.card .preview iframe{position:absolute;top:0;left:0;width:200%;height:200%;transform:scale(.5);transform-origin:0 0;border:0;pointer-events:none}
+.card .preview .overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.04));pointer-events:none}
+.card .body{padding:28px 28px 24px;display:flex;flex-direction:column;gap:16px}
+.card .num{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+.card .num .pill{margin-left:12px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;color:var(--mute);font-size:10px}
+.card h2{font-weight:400;letter-spacing:-.015em}
+.card h2 em{font-style:italic;color:var(--ink-2);font-weight:400}
+.card .desc{font-size:15px;line-height:1.6;color:var(--ink-2);max-width:50ch}
+.card .props{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.card .prop{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding:5px 10px;background:var(--bg);border:1px solid var(--line);border-radius:999px}
+.card .swatches{display:flex;gap:6px;margin-top:6px}
+.card .swatches span{width:28px;height:28px;border-radius:50%;border:1px solid rgba(0,0,0,.05)}
+.card .foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:20px;border-top:1px solid var(--line)}
+.card .foot .meta{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--mute);text-transform:uppercase}
+.card .foot .cta{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;padding:10px 16px;background:var(--ink);color:var(--bg);border-radius:8px;transition:background .25s}
+.card .foot .cta:hover{background:var(--accent)}
+
+/* Footer */
+.foot{padding:48px 0;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.foot-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+.note{margin-top:48px;padding:32px;background:var(--bg-2);border-radius:12px;border:1px solid var(--line);display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.note .l{flex:1;min-width:260px}
+.note h3{margin-bottom:8px}
+.note p{font-size:15px;line-height:1.6}
+.note .icon{width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:22px;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head-row">
+    <div class="brand"><span class="mark">a</span> Ana Rosario <em>Luna</em></div>
+    <div class="head-meta"><span class="dot"></span> 8 direcciones de diseño · landing page</div>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div>
+      <span class="eyebrow">Selección de direcciones</span>
+      <h1>Ocho maneras <em>distintas</em> de presentar la <span class="acc">misma</span> consulta.</h1>
+    </div>
+    <div>
+      <p class="intro-sub">Mismo contenido, mismas secciones, mismo tono cálido — ocho lenguajes visuales con paletas y tipografías distintas para que elijas el que mejor te representa.</p>
+      <div class="intro-meta">
+        <div>Audiencia<strong>Adultos 25-55 · España</strong></div>
+        <div>Idioma<strong>Español (ES)</strong></div>
+        <div>Formato<strong>Single-page · Responsive</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="designs">
+  <div class="wrap">
+    <div class="grid">
+
+      <!-- 01 Editorial Warmth -->
+      <a class="card" href="01 Editorial Warmth.html" target="_top">
+        <div class="preview">
+          <iframe src="01 Editorial Warmth.html" loading="lazy" scrolling="no"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <div class="num">01 — Editorial Warmth <span class="pill">React · Tweaks</span></div>
+          <h2>Cálida y <em>editorial.</em></h2>
+          <p class="desc">Hero asimétrico con foto arqueada, formas orgánicas sutiles y una pestaña de Tweaks para alternar paletas. La dirección "luxury wellness" del brief, con más interactividad.</p>
+          <div class="swatches">
+            <span style="background:#FAF6F0"></span>
+            <span style="background:#8FA08C"></span>
+            <span style="background:#C8755A"></span>
+            <span style="background:#2E332C"></span>
+          </div>
+          <div class="props">
+            <span class="prop">Cormorant + Jakarta</span>
+            <span class="prop">Sage · Terracotta</span>
+            <span class="prop">Sticky nav</span>
+            <span class="prop">Tweaks panel</span>
+          </div>
+          <div class="foot"><span class="meta">11 secciones</span><span class="cta">Abrir diseño →</span></div>
+        </div>
+      </a>
+
+      <!-- 02 Quiet Atelier -->
+      <a class="card" href="02 Quiet Atelier.html" target="_top">
+        <div class="preview">
+          <iframe src="02 Quiet Atelier.html" loading="lazy" scrolling="no"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <div class="num">02 — Quiet Atelier <span class="pill">Magazine</span></div>
+          <h2>Editorial de <em>autor.</em></h2>
+          <p class="desc">Layout de revista impresa: masthead, índice, capitulares, pull-quotes y un grid asimétrico de lecturas. Menos botones, más respiro tipográfico.</p>
+          <div class="swatches">
+            <span style="background:#F8F3EA"></span>
+            <span style="background:#9A6B47"></span>
+            <span style="background:#7E8A6F"></span>
+            <span style="background:#1F1B16"></span>
+          </div>
+          <div class="props">
+            <span class="prop">Playfair + Outfit</span>
+            <span class="prop">Tabaco · oliva</span>
+            <span class="prop">Sin nav sticky</span>
+            <span class="prop">Capitular dropcap</span>
+          </div>
+          <div class="foot"><span class="meta">10 secciones</span><span class="cta">Abrir diseño →</span></div>
+        </div>
+      </a>
+
+      <!-- 03 Forest & Cream -->
+      <a class="card" href="03 Forest & Cream.html" target="_top">
+        <div class="preview">
+          <iframe src="03 Forest & Cream.html" loading="lazy" scrolling="no"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <div class="num">03 — Forest &amp; Cream <span class="pill">Premium</span></div>
+          <h2>Bosque sobre <em>crema.</em></h2>
+          <p class="desc">Hero a pantalla completa en verde profundo, secciones alternando crema y oscuro, marquee tipográfico y tarjeta de retrato con sello. La opción más "boutique de bienestar".</p>
+          <div class="swatches">
+            <span style="background:#F4EEDE"></span>
+            <span style="background:#1F2A22"></span>
+            <span style="background:#CB7A5A"></span>
+            <span style="background:#A8B59A"></span>
+          </div>
+          <div class="props">
+            <span class="prop">DM Serif + Inter</span>
+            <span class="prop">Verde profundo</span>
+            <span class="prop">Hero full-bleed</span>
+            <span class="prop">Marquee viva</span>
+          </div>
+          <div class="foot"><span class="meta">11 secciones</span><span class="cta">Abrir diseño →</span></div>
+        </div>
+      </a>
+
+      <!-- 04 Soft Sans -->
+      <a class="card" href="04 Soft Sans.html" target="_top">
+        <div class="preview">
+          <iframe src="04 Soft Sans.html" loading="lazy" scrolling="no"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <div class="num">04 — Soft Sans <span class="pill">Contemporáneo</span></div>
+          <h2>Sin serifa, <em>con calidez.</em></h2>
+          <p class="desc">Sólo sans en pesos finos y display gigante, paleta monocroma cálida con un único coral, y un bloque de contacto en tarjeta oscura. La opción más actual, sin perder suavidad.</p>
+          <div class="swatches">
+            <span style="background:#F5EFE6"></span>
+            <span style="background:#D67A52"></span>
+            <span style="background:#1C1814"></span>
+            <span style="background:#EBE3D3"></span>
+          </div>
+          <div class="props">
+            <span class="prop">Plus Jakarta sólo</span>
+            <span class="prop">Cream · coral</span>
+            <span class="prop">Type colosal</span>
+            <span class="prop">Card oscura CTA</span>
+          </div>
+          <div class="foot"><span class="meta">9 secciones</span><span class="cta">Abrir diseño →</span></div>
+        </div>
+      </a>
+
+      <!-- 05 Vintage Bordered -->
+      <a class="card" href="05 Vintage Bordered.html" target="_top">
+        <div class="preview">
+          <iframe src="05 Vintage Bordered.html" loading="lazy" scrolling="no"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <div class="num">05 — Vintage Bordered <span class="pill">Clásica</span></div>
+          <h2>Editorial <em>clásica.</em> Frames, capitales pequeñas, romanos.</h2>
+          <p class="desc">El tono más libresco: masthead doble línea, marcos con outline, dropcaps, numerales romanos y una firma manuscrita. Para quien quiere transmitir trayectoria y reposo.</p>
+          <div class="swatches">
+            <span style="background:#F1E9D7"></span>
+            <span style="background:#9C4A2B"></span>
+            <span style="background:#A87F36"></span>
+            <span style="background:#262017"></span>
+          </div>
+          <div class="props">
+            <span class="prop">Cormorant + SC</span>
+            <span class="prop">Sepia · óxido</span>
+            <span class="prop">Frames clásicos</span>
+            <span class="prop">Numerales romanos</span>
+            <span class="prop">Dropcaps</span>
+            <span class="prop">Firma manuscrita</span>
+          </div>
+          <div class="foot"><span class="meta">10 secciones</span><span class="cta">Abrir diseño →</span></div>
+        </div>
+      </a>
+
+      <!-- 06 Twilight Lavender -->
+      <a class="card" href="06 Twilight Lavender.html" target="_top">
+        <div class="preview">
+          <iframe src="06 Twilight Lavender.html" loading="lazy" scrolling="no"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <div class="num">06 — Twilight Lavender <span class="pill">Calmante</span></div>
+          <h2>Crepúsculo <em>lavanda.</em></h2>
+          <p class="desc">Paleta de ciruela y lavanda con blush y un toque de oro — el lenguaje visual del descanso. Nav flotante en píldora, hero con foto en arco, tarjeta de contacto a sangre completa en ciruela profundo.</p>
+          <div class="swatches">
+            <span style="background:#F7F3F8"></span>
+            <span style="background:#A493B8"></span>
+            <span style="background:#6B4C7A"></span>
+            <span style="background:#E8C8C0"></span>
+          </div>
+          <div class="props">
+            <span class="prop">Fraunces + Manrope</span>
+            <span class="prop">Ciruela · lavanda · blush</span>
+            <span class="prop">Nav píldora flotante</span>
+            <span class="prop">Glow ambiental</span>
+          </div>
+          <div class="foot"><span class="meta">10 secciones</span><span class="cta">Abrir diseño →</span></div>
+        </div>
+      </a>
+
+      <!-- 07 Clay & Blush -->
+      <a class="card" href="07 Clay & Blush.html" target="_top">
+        <div class="preview">
+          <iframe src="07 Clay & Blush.html" loading="lazy" scrolling="no"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <div class="num">07 — Clay &amp; Blush <span class="pill">Cerámica</span></div>
+          <h2>Cerámica <em>contemporánea.</em></h2>
+          <p class="desc">Formas orgánicas — blobs que respiran, foto en círculo, tarjetas con borde superior de arcilla, vasijas como numerales del proceso. Paleta cálida de arcilla y rubor.</p>
+          <div class="swatches">
+            <span style="background:#FBF6EF"></span>
+            <span style="background:#E9C8B8"></span>
+            <span style="background:#C77B5F"></span>
+            <span style="background:#8A4332"></span>
+          </div>
+          <div class="props">
+            <span class="prop">Instrument Serif</span>
+            <span class="prop">Arcilla · rubor · marfil</span>
+            <span class="prop">Blobs animados</span>
+            <span class="prop">Foto circular</span>
+          </div>
+          <div class="foot"><span class="meta">10 secciones</span><span class="cta">Abrir diseño →</span></div>
+        </div>
+      </a>
+
+      <!-- 08 Dusk & Rose -->
+      <a class="card" href="08 Dusk & Rose.html" target="_top" style="grid-column:1 / -1">
+        <div class="preview" style="aspect-ratio:21/8">
+          <iframe src="08 Dusk & Rose.html" loading="lazy" scrolling="no"></iframe>
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <div class="num">08 — Dusk &amp; Rose <span class="pill">Editorial</span></div>
+          <h2>Azul atardecer <em>+ rosa antiguo.</em> Split-screen sin sticky nav.</h2>
+          <p class="desc">Hero dividido — texto sobre crema a la izquierda, foto sobre azul atardecer a la derecha. Servicios en grid oscuro con hover en rosa antiguo, FAQ con numerales romanos pequeños. Para quien quiere transmitir cercanía sin caer en suavidades.</p>
+          <div class="swatches">
+            <span style="background:#F4EFE9"></span>
+            <span style="background:#4A5A6F"></span>
+            <span style="background:#C68A8F"></span>
+            <span style="background:#2A3445"></span>
+            <span style="background:#E8C5C7"></span>
+          </div>
+          <div class="props">
+            <span class="prop">Cormorant + Geist</span>
+            <span class="prop">Azul atardecer + rosa</span>
+            <span class="prop">Split-screen hero</span>
+            <span class="prop">Servicios oscuros</span>
+            <span class="prop">Geist Mono detalles</span>
+          </div>
+          <div class="foot"><span class="meta">11 secciones</span><span class="cta">Abrir diseño →</span></div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="note">
+      <div class="icon">i</div>
+      <div class="l">
+        <h3>Cómo usar esta página</h3>
+        <p>Cada tarjeta abre la versión interactiva real (no una imagen). Recorre las ocho, marca las que te gusten y dime cuáles refinar — puedo mezclar elementos (por ejemplo: el hero de la 08 con la paleta de la 06), o evolucionar una sola hasta producción. Las paletas van del cálido natural (01-05) al lavanda calmante (06), la arcilla orgánica (07) y el dúo azul atardecer + rosa antiguo (08).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-row">
+    <span>Ana Rosario Luna · 8 direcciones de diseño · 2026</span>
+    <span>Para producción: una sola dirección · todas son responsive</span>
+  </div>
+</footer>
+
+</body>
+</html>

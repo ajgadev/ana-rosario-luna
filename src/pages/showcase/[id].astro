@@ -1,0 +1,34 @@
+---
+import { DESIGNS, getDesign } from "../../data/designs";
+import TweaksBar from "../../components/showcase/TweaksBar.tsx";
+
+export function getStaticPaths() {
+  return DESIGNS.map((d) => ({ params: { id: d.id } }));
+}
+
+const { id } = Astro.params;
+const design = getDesign(id!);
+if (!design) return Astro.redirect("/showcase");
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{`Diseño ${design.id} — ${design.name} · Ana Rosario Luna`}</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style>
+      html, body { margin: 0; padding: 0; height: 100%; background: #1c1814; }
+      #design-frame { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+    </style>
+  </head>
+  <body>
+    <iframe
+      id="design-frame"
+      src={`/designs/${design.id}/index.html`}
+      title={`Diseño ${design.id} — ${design.name}`}
+    ></iframe>
+    <TweaksBar client:load designId={design.id} />
+  </body>
+</html>

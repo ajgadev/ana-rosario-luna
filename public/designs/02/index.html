@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ana Rosario Luna · Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#F8F3EA; --bg-2:#EFE7D5; --ink:#1F1B16; --ink-soft:#5A4F42; --muted:#8A7E6E;
+  --line:#D9CFB8; --accent:#9A6B47; --accent-deep:#7A4D2E; --sage:#7E8A6F;
+  --serif:"Playfair Display", Georgia, serif;
+  --sans:"Outfit", system-ui, sans-serif;
+  --mono:"JetBrains Mono", monospace;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block} a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;cursor:pointer;background:none;color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:400;letter-spacing:-0.015em}
+h1{font-size:clamp(56px,8vw,128px);line-height:.96}
+h2{font-size:clamp(36px,4.6vw,68px);line-height:1.05}
+h3{font-size:clamp(22px,2vw,30px);line-height:1.2}
+p{margin:0;color:var(--ink-soft)}
+.italic{font-style:italic;font-weight:400;color:var(--ink-soft)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+@media(max-width:720px){.wrap{padding:0 24px}}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.rule{height:1px;background:var(--line);width:100%}
+
+/* NAV — magazine masthead, not sticky */
+.masthead{padding:22px 0 18px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:200;background:var(--bg)}
+.masthead-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.masthead .mark{font-family:var(--serif);font-size:13px;letter-spacing:.4em;text-transform:uppercase}
+.masthead .mark em{font-style:italic;letter-spacing:.01em;text-transform:none}
+.masthead .issue{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.masthead-nav{display:flex;gap:32px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.masthead-nav a{color:var(--ink-soft);position:relative;padding-bottom:4px}
+.masthead-nav a:hover{color:var(--accent)}
+@media(max-width:880px){.masthead-nav{display:none}}
+
+/* HERO — magazine cover */
+.cover{padding:80px 0 100px;position:relative}
+.cover-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:end}
+@media(max-width:920px){.cover-grid{grid-template-columns:1fr;gap:48px}}
+.cover h1 .accent{color:var(--accent)}
+.cover-meta{display:flex;gap:32px;margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.cover-meta strong{display:block;color:var(--ink);font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:.02em;text-transform:none;margin-top:4px}
+.cover-photo{aspect-ratio:3/4;background:linear-gradient(170deg,#D6C7AB,#8E795A);border-radius:2px;position:relative;overflow:hidden}
+.cover-photo .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,.7);text-transform:uppercase}
+.cover-photo .stamp{position:absolute;left:24px;top:24px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.8);text-transform:uppercase}
+.cover-photo .stamp::before{content:"●";color:var(--accent);margin-right:8px}
+.cover-tag{margin-top:24px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cover-lede{font-family:var(--serif);font-size:clamp(20px,2vw,28px);line-height:1.4;font-style:italic;color:var(--ink-soft);max-width:32ch;margin-top:24px}
+.cover-cta{display:inline-flex;align-items:center;gap:12px;margin-top:40px;padding:18px 30px;background:var(--ink);color:var(--bg);border-radius:0;font-family:var(--sans);font-size:14px;letter-spacing:.06em;text-transform:uppercase;transition:background .25s}
+.cover-cta:hover{background:var(--accent-deep)}
+.cover-cta::after{content:"→";font-size:18px}
+
+/* TOC — table of contents */
+.toc{padding:48px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2)}
+.toc-grid{display:grid;grid-template-columns:160px 1fr;gap:40px;align-items:start}
+@media(max-width:720px){.toc-grid{grid-template-columns:1fr;gap:20px}}
+.toc h4{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.toc-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 32px}
+@media(max-width:720px){.toc-list{grid-template-columns:1fr 1fr}}
+.toc-item{display:flex;align-items:baseline;gap:14px;font-family:var(--serif);font-size:18px;color:var(--ink)}
+.toc-item .n{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.08em}
+.toc-item:hover{color:var(--accent)}
+
+/* SECTION shell */
+section{padding:120px 0}
+@media(max-width:720px){section{padding:80px 0}}
+.sec-num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.sec-num::before{content:"";width:32px;height:1px;background:var(--accent)}
+
+/* ABOUT — editorial spread */
+.about-spread{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start}
+@media(max-width:920px){.about-spread{grid-template-columns:1fr;gap:40px}}
+.about-spread .col-img{position:sticky;top:40px}
+.about-photo{aspect-ratio:4/5;background:linear-gradient(180deg,#C9BCA1,#8E7A5C);position:relative;overflow:hidden}
+.about-photo .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,.7);text-transform:uppercase}
+.about-cap{margin-top:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.about-body p{font-size:17.5px;line-height:1.7;margin-top:24px;max-width:52ch}
+.about-body p:first-of-type::first-letter{font-family:var(--serif);font-size:78px;line-height:.7;float:left;margin:8px 14px 0 0;color:var(--accent);font-weight:500}
+.about-pull{margin:48px 0;padding:32px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--serif);font-style:italic;font-size:clamp(22px,2vw,30px);line-height:1.35;color:var(--ink);max-width:36ch}
+.signature{margin-top:32px;font-family:var(--serif);font-style:italic;font-size:32px;color:var(--accent);letter-spacing:-.01em;transform:rotate(-2deg);display:inline-block}
+
+/* SERVICES — magazine-grid */
+.services-spread{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:64px}
+@media(max-width:720px){.services-spread{grid-template-columns:1fr}}
+.svc{background:var(--bg);padding:48px 40px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;transition:background .3s}
+.svc:hover{background:var(--bg-2)}
+.svc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.svc-num{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted)}
+.svc-tag{font-family:var(--mono);font-size:10px;padding:4px 10px;border:1px solid var(--line);letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.svc h3{margin-top:8px}
+.svc-desc{font-size:15px;line-height:1.6;max-width:36ch}
+.svc-foot{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.svc-foot .arr{font-size:16px}
+.svc-foot:hover{color:var(--accent)}
+
+/* PROCESS — vertical timeline */
+.process{background:var(--bg-2)}
+.process-list{margin-top:64px;display:flex;flex-direction:column;gap:0}
+.proc{display:grid;grid-template-columns:120px 1fr 1fr;gap:48px;padding:48px 0;border-top:1px solid var(--line);align-items:start}
+.proc:last-child{border-bottom:1px solid var(--line)}
+@media(max-width:720px){.proc{grid-template-columns:80px 1fr;gap:24px}.proc-img{display:none}}
+.proc-n{font-family:var(--serif);font-size:88px;line-height:1;color:var(--accent);font-style:italic}
+.proc h3{margin-bottom:14px}
+.proc p{max-width:36ch;font-size:16px}
+.proc-img{aspect-ratio:4/3;background:linear-gradient(135deg,#C9BCA1,#7E8A6F);position:relative}
+.proc-img .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.7);text-transform:uppercase}
+
+/* QUOTE BAR */
+.bigquote{padding:120px 0;text-align:center;background:var(--ink);color:var(--bg)}
+.bigquote q{font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.6vw,52px);line-height:1.25;quotes:"“" "”";display:block;max-width:24ch;margin:0 auto;font-weight:300}
+.bigquote q::before{content:open-quote;color:var(--accent);font-size:1.4em;line-height:0;vertical-align:-0.2em;margin-right:.1em}
+.bigquote q::after{content:close-quote;color:var(--accent);font-size:1.4em;line-height:0;vertical-align:-0.4em;margin-left:.1em}
+.bigquote cite{display:block;margin-top:32px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,243,234,.55);font-style:normal}
+
+/* BLOG / lecturas */
+.blog-spread{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:0 32px;margin-top:48px}
+@media(max-width:920px){.blog-spread{grid-template-columns:1fr}}
+.feat,.minor{display:block}
+.feat .thumb{aspect-ratio:5/4;background:linear-gradient(135deg,#B59F86,#7E8A6F);margin-bottom:24px;position:relative}
+.feat h3{font-size:clamp(28px,2.4vw,40px);margin-top:12px}
+.feat p{margin-top:14px;max-width:42ch;font-size:16px}
+.minor{border-top:1px solid var(--line);padding-top:24px;margin-top:0}
+.minor:first-of-type{border-top:0}
+.minor + .minor{margin-top:24px}
+.minor h3{font-size:20px;margin-top:8px;line-height:1.25}
+.minor .meta,.feat .meta{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.minor-side{display:flex;flex-direction:column}
+.thumb .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,.7);text-transform:uppercase}
+
+/* FAQ */
+.faq-list{margin-top:48px;border-top:1px solid var(--line)}
+.faq{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;text-align:left;padding:30px 0;display:flex;justify-content:space-between;gap:24px;font-family:var(--serif);font-size:clamp(20px,1.8vw,26px);color:var(--ink);align-items:center}
+.faq-q:hover{color:var(--accent)}
+.faq-q .n{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--muted);flex-shrink:0;width:48px}
+.faq-q .t{flex:1}
+.faq-q .x{width:14px;height:14px;position:relative;flex-shrink:0}
+.faq-q .x::before,.faq-q .x::after{content:"";position:absolute;background:var(--ink);left:0;right:0;top:6px;height:1.5px;transition:transform .3s}
+.faq-q .x::after{transform:rotate(90deg)}
+.faq.open .x::after{transform:rotate(0)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;padding-left:48px}
+.faq.open .faq-a{max-height:400px;padding:0 0 28px 48px}
+.faq-a p{font-size:16px;line-height:1.65;max-width:60ch}
+
+/* CONTACT */
+.contact{background:var(--ink);color:var(--bg);padding:140px 0}
+.contact .eyebrow,.contact .sec-num{color:rgba(248,243,234,.55)}
+.contact .sec-num::before{background:var(--accent)}
+.contact h2{color:var(--bg);max-width:18ch}
+.contact h2 .italic{color:rgba(248,243,234,.55)}
+.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;margin-top:48px;align-items:start}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:40px}}
+.contact p{color:rgba(248,243,234,.75);max-width:42ch;font-size:17px;line-height:1.6}
+.contact-btn{display:inline-flex;align-items:center;gap:12px;margin-top:32px;padding:18px 32px;background:var(--accent);color:var(--bg);font-size:14px;letter-spacing:.06em;text-transform:uppercase;transition:background .25s}
+.contact-btn:hover{background:#B07F58}
+.contact-btn::after{content:"→"}
+.contact-aux{display:grid;grid-template-columns:1fr 1fr;gap:32px 24px;margin-top:48px}
+.aux-item h4{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,243,234,.5);font-weight:400;margin-bottom:8px}
+.aux-item a,.aux-item span{color:var(--bg);font-family:var(--serif);font-size:20px;display:block}
+.aux-item a:hover{color:var(--accent)}
+.contact-card{border:1px solid rgba(248,243,234,.18);padding:40px;background:rgba(248,243,234,.03)}
+.contact-card h3{color:var(--bg);font-size:24px;margin-bottom:16px}
+.field{margin-top:20px}
+.field label{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,243,234,.5);display:block;margin-bottom:8px}
+.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(248,243,234,.2);padding:8px 0;color:var(--bg);font-family:var(--sans);font-size:16px}
+.field input:focus,.field textarea:focus{outline:0;border-bottom-color:var(--accent)}
+.field textarea{resize:vertical;min-height:80px}
+.contact-card button{margin-top:32px;width:100%;padding:18px;background:var(--bg);color:var(--ink);font-size:14px;letter-spacing:.06em;text-transform:uppercase;transition:opacity .2s}
+.contact-card button:hover{opacity:.85}
+
+/* FOOT */
+.foot{padding:48px 0 36px;border-top:1px solid var(--line);background:var(--bg-2)}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.foot-row a{color:var(--ink-soft)}
+.foot-row a:hover{color:var(--accent)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <span class="issue">Edición 06 · Madrid · 2026</span>
+    <div class="mark">Ana Rosario <em>Luna</em></div>
+    <nav class="masthead-nav">
+      <a href="#sobre">Sobre</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#lecturas">Lecturas</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<section class="cover">
+  <div class="wrap cover-grid">
+    <div>
+      <div class="cover-tag">Psicóloga · Colegiada M-28432</div>
+      <h1 style="margin-top:32px">Pensar mejor. <br><span class="italic">Sentir más claro.</span> <br>Vivir con menos <span class="accent">peso.</span></h1>
+      <p class="cover-lede">Terapia para adultos y parejas que buscan más que aliviar síntomas — que quieren entenderse.</p>
+      <a href="#contacto" class="cover-cta">Reservar primera consulta</a>
+      <div class="cover-meta">
+        <div>Modalidad<strong>Presencial · Online</strong></div>
+        <div>Idiomas<strong>ES · EN · CAT</strong></div>
+        <div>Primera llamada<strong>Gratuita · 20'</strong></div>
+      </div>
+    </div>
+    <div>
+      <div class="cover-photo">
+        <span class="stamp">Retrato · Estudio Velázquez</span>
+        <span class="ph">Foto editorial 3:4</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="toc" style="padding:48px 0">
+  <div class="wrap toc-grid">
+    <h4>Índice</h4>
+    <div class="toc-list">
+      <a class="toc-item" href="#sobre"><span class="n">01</span> Sobre mí</a>
+      <a class="toc-item" href="#servicios"><span class="n">02</span> Servicios</a>
+      <a class="toc-item" href="#proceso"><span class="n">03</span> El proceso</a>
+      <a class="toc-item" href="#testimonios"><span class="n">04</span> Testimonios</a>
+      <a class="toc-item" href="#lecturas"><span class="n">05</span> Lecturas</a>
+      <a class="toc-item" href="#preguntas"><span class="n">06</span> Preguntas</a>
+      <a class="toc-item" href="#contacto"><span class="n">07</span> Contacto</a>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="sec-num">01 · Sobre mí</div>
+    <div class="about-spread">
+      <div class="col-img">
+        <div class="about-photo"><span class="ph">Retrato horizontal · 4:5</span></div>
+        <div class="about-cap"><span>Madrid · primavera '26</span><span>F. Calvo / Atelier</span></div>
+      </div>
+      <div class="about-body">
+        <h2>Acompaño a quienes <span class="italic">quieren mirar dentro</span> sin perderse en el camino.</h2>
+        <p>Soy Ana Rosario Luna, psicóloga sanitaria. Llevo más de una década acompañando a personas adultas — algunas en crisis, otras simplemente cansadas de funcionar en piloto automático. Mi enfoque es integrador: trabajo principalmente con terapia cognitivo-conductual, mindfulness y terapia centrada en compasión.</p>
+        <p>No creo en fórmulas universales. Cada proceso se construye contigo, a tu ritmo, con tus palabras. Mi trabajo es crear el espacio donde lo difícil pueda ser dicho — y luego, poco a poco, ordenado.</p>
+        <div class="about-pull">«El cambio rara vez es dramático. Suele parecerse más a una lámpara que alguien encendió, y ya no consigues volver a no ver.»</div>
+        <p>Soy miembro del Colegio Oficial de Psicólogos de Madrid (Nº M-28432). Mi formación incluye un máster en Psicología Clínica por la Universidad Autónoma de Madrid y formación específica en EMDR y terapia de pareja.</p>
+        <span class="signature">Ana Rosario</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-num">02 · Servicios</div>
+    <h2 style="max-width:18ch">Cuatro maneras de <span class="italic">empezar a estar mejor.</span></h2>
+    <div class="services-spread">
+      <div class="svc">
+        <div>
+          <div class="svc-head"><span class="svc-num">01</span><span class="svc-tag">Adultos</span></div>
+          <h3>Terapia individual</h3>
+          <p class="svc-desc">Ansiedad, duelo, autoestima, transiciones vitales. Un espacio para reencontrar el hilo.</p>
+        </div>
+        <div class="svc-foot"><span>Saber más</span><span class="arr">→</span></div>
+      </div>
+      <div class="svc">
+        <div>
+          <div class="svc-head"><span class="svc-num">02</span><span class="svc-tag">Pareja</span></div>
+          <h3>Terapia de pareja</h3>
+          <p class="svc-desc">Comunicación, conflictos, reconstrucción. Para parejas que aún quieren entenderse.</p>
+        </div>
+        <div class="svc-foot"><span>Saber más</span><span class="arr">→</span></div>
+      </div>
+      <div class="svc">
+        <div>
+          <div class="svc-head"><span class="svc-num">03</span><span class="svc-tag">Online</span></div>
+          <h3>Terapia online</h3>
+          <p class="svc-desc">Misma calidad, donde estés. Videollamada segura — también para residentes fuera de España.</p>
+        </div>
+        <div class="svc-foot"><span>Saber más</span><span class="arr">→</span></div>
+      </div>
+      <div class="svc">
+        <div>
+          <div class="svc-head"><span class="svc-num">04</span><span class="svc-tag">14-18</span></div>
+          <h3>Adolescentes</h3>
+          <p class="svc-desc">Acompañamiento a jóvenes en colaboración cercana con la familia, con su consentimiento.</p>
+        </div>
+        <div class="svc-foot"><span>Saber más</span><span class="arr">→</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proceso" class="process">
+  <div class="wrap">
+    <div class="sec-num">03 · El proceso</div>
+    <h2 style="max-width:16ch">Sin sorpresas. <span class="italic">Sólo tres pasos.</span></h2>
+    <div class="process-list">
+      <div class="proc">
+        <div class="proc-n">i</div>
+        <div>
+          <h3>Una llamada para empezar</h3>
+          <p>Veinte minutos gratuitos por teléfono o vídeo. Me cuentas brevemente qué te trae, te explico cómo trabajo, y decides sin compromiso.</p>
+        </div>
+        <div class="proc-img"><span class="ph">Detalle · consulta</span></div>
+      </div>
+      <div class="proc">
+        <div class="proc-n">ii</div>
+        <div>
+          <h3>Primera sesión completa</h3>
+          <p>Una hora. Te escucho, te pregunto, exploramos juntas qué necesitas. Acordamos un encuadre: frecuencia, objetivos, expectativas.</p>
+        </div>
+        <div class="proc-img"><span class="ph">Detalle · materiales</span></div>
+      </div>
+      <div class="proc">
+        <div class="proc-n">iii</div>
+        <div>
+          <h3>Tu proceso, tu ritmo</h3>
+          <p>Sesiones semanales o quincenales de 50 minutos. Cada seis u ocho semanas hacemos balance — ajustamos, profundizamos o cerramos.</p>
+        </div>
+        <div class="proc-img"><span class="ph">Detalle · ventana</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonios" class="bigquote">
+  <q>Llegué con la sensación de no entenderme. Ana me ayudó a poner palabras a lo que sentía. Hoy entiendo mucho mejor lo que necesito.</q>
+  <cite>Marta · 34 años · terapia individual</cite>
+</section>
+
+<section id="lecturas">
+  <div class="wrap">
+    <div class="sec-num">04 · Lecturas</div>
+    <h2 style="max-width:18ch">Notas para <span class="italic">el camino.</span></h2>
+    <div class="blog-spread">
+      <a class="feat" href="#">
+        <div class="thumb"><span class="ph">Imagen editorial 5:4</span></div>
+        <div class="meta">Ansiedad · 12 mayo 2026 · 6 min</div>
+        <h3>Cuando la ansiedad no se calla: aprender a convivir antes de combatir</h3>
+        <p>Por qué luchar contra la ansiedad la alimenta — y qué hacer en su lugar. Una guía honesta para los días en que el cuerpo se adelanta.</p>
+      </a>
+      <div class="minor-side">
+        <a class="minor" href="#">
+          <div class="meta">Pareja · 28 abril 2026</div>
+          <h3>Las cuatro conversaciones que toda pareja debería tener cada año</h3>
+        </a>
+        <a class="minor" href="#">
+          <div class="meta">Autoestima · 10 abril 2026</div>
+          <h3>El crítico interior: cómo identificarlo y dejar de obedecerle</h3>
+        </a>
+        <a class="minor" href="#">
+          <div class="meta">Duelo · 02 abril 2026</div>
+          <h3>El duelo que nadie reconoce: pérdidas sin entierro</h3>
+        </a>
+      </div>
+      <div class="minor-side">
+        <a class="minor" href="#">
+          <div class="meta">Mindfulness · 22 marzo 2026</div>
+          <h3>No hace falta meditar para empezar — basta con respirar tres veces</h3>
+        </a>
+        <a class="minor" href="#">
+          <div class="meta">Cuerpo · 14 marzo 2026</div>
+          <h3>Lo que el cuerpo recuerda cuando la mente decide olvidar</h3>
+        </a>
+        <a class="minor" href="#">
+          <div class="meta">Trabajo · 06 marzo 2026</div>
+          <h3>Burnout no es estar cansada. Es estar desconectada.</h3>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas" style="background:var(--bg-2)">
+  <div class="wrap" style="display:grid;grid-template-columns:.7fr 1.3fr;gap:80px">
+    <div>
+      <div class="sec-num">05 · Preguntas</div>
+      <h2 style="max-width:14ch">Lo que <span class="italic">casi todas</span> me preguntan.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq"><button class="faq-q"><span class="n">01</span><span class="t">¿Cuánto dura una sesión?</span><span class="x"></span></button><div class="faq-a"><p>Cincuenta minutos. La primera puede extenderse hasta sesenta para tener tiempo de conocernos.</p></div></div>
+      <div class="faq"><button class="faq-q"><span class="n">02</span><span class="t">¿Con qué frecuencia debo asistir?</span><span class="x"></span></button><div class="faq-a"><p>Lo habitual es una sesión semanal al inicio. Conforme avanzamos pasamos a quincenales o mantenimiento mensual.</p></div></div>
+      <div class="faq"><button class="faq-q"><span class="n">03</span><span class="t">¿Las sesiones online son igual de efectivas?</span><span class="x"></span></button><div class="faq-a"><p>Sí. La investigación y mi propia experiencia confirman que para la mayoría de motivos de consulta funcionan igual de bien.</p></div></div>
+      <div class="faq"><button class="faq-q"><span class="n">04</span><span class="t">¿Es confidencial?</span><span class="x"></span></button><div class="faq-a"><p>Absolutamente. Estoy sujeta al secreto profesional y al código deontológico del Colegio Oficial de Psicólogos.</p></div></div>
+      <div class="faq"><button class="faq-q"><span class="n">05</span><span class="t">¿Cuánto cuestan las sesiones?</span><span class="x"></span></button><div class="faq-a"><p>Sesión individual 70€. Sesión de pareja 90€. Primera llamada orientativa de 20 minutos, gratuita.</p></div></div>
+      <div class="faq"><button class="faq-q"><span class="n">06</span><span class="t">¿Cómo sé si necesito terapia?</span><span class="x"></span></button><div class="faq-a"><p>No hace falta estar en crisis. Si algo te pesa, te bloquea o se repite — ya es motivo suficiente para una primera llamada.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="contact">
+  <div class="wrap">
+    <div class="sec-num">07 · Contacto</div>
+    <div class="contact-grid">
+      <div>
+        <h2>Da el <span class="italic">primer paso.</span></h2>
+        <p style="margin-top:24px">Una llamada orientativa de veinte minutos. Sin coste, sin compromiso, sin preparación previa. Solo una conversación para que ambas veamos si tiene sentido empezar.</p>
+        <a href="#" class="contact-btn">Reservar llamada gratuita</a>
+        <div class="contact-aux">
+          <div class="aux-item"><h4>Email</h4><a href="mailto:hola@anarosarioluna.es">hola@anarosarioluna.es</a></div>
+          <div class="aux-item"><h4>Teléfono</h4><a href="tel:+34611223344">+34 611 22 33 44</a></div>
+          <div class="aux-item"><h4>Consulta</h4><span>C/ Velázquez 84, Madrid</span></div>
+          <div class="aux-item"><h4>Horario</h4><span>Lun—Vie · 10:00 a 20:00</span></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>O escríbeme unas líneas</h3>
+        <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Mensaje enviado ✓';">
+          <div class="field"><label>Nombre</label><input type="text" required placeholder="Cómo te llamas"/></div>
+          <div class="field"><label>Email</label><input type="email" required placeholder="tu@email.com"/></div>
+          <div class="field"><label>Mensaje</label><textarea rows="3" required placeholder="Lo justo para tener una idea — sin detalle"></textarea></div>
+          <button type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-row">
+    <span>© 2026 Ana Rosario Luna · Colegiada M-28432</span>
+    <span style="display:flex;gap:24px">
+      <a href="#">Privacidad</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll(".faq-q").forEach(b => b.addEventListener("click", () => {
+  b.closest(".faq").classList.toggle("open");
+}));
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add("in")), { threshold:.1 });
+document.querySelectorAll("section > .wrap > *").forEach((el,i) => { el.classList.add("reveal"); el.style.transitionDelay = (i*40)+"ms"; io.observe(el); });
+</script>
+</body>
+</html>
