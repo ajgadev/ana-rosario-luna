@@ -109,7 +109,7 @@ function Hero() {
           </div>
         </div>
         <div className="hero-visual reveal" style={{ position: "relative" }}>
-          <div className="hero-photo"><span className="placeholder-label">Retrato editorial · 4:5</span></div>
+          <div className="hero-photo"><img src="/pictures/ana_portait.jpeg" alt="Ana Rosario Luna, psicóloga sanitaria" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 22%" }} /></div>
           <div className="hero-frame-ornament">
             <span style={{ fontSize: 11, color: "var(--ink-soft)", fontFamily: "var(--sans)", fontStyle: "normal", letterSpacing: "0.1em", textTransform: "uppercase" }}>desde</span>
             <strong style={{ display: "block", fontStyle: "normal", fontSize: 22, color: "var(--accent-deep)", fontFamily: "var(--serif)", marginTop: 2 }}>2014</strong>
