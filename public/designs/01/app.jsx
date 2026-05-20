@@ -123,7 +123,7 @@ function Hero() {
 /* =================== Trust =================== */
 function Trust() {
   const items = [
-    { num: "11", suf: "años", label: "de experiencia clínica" },
+    { num: "5", suf: "años", label: "de experiencia clínica" },
     { num: "850", suf: "+", label: "pacientes acompañados" },
     { num: "M-28432", suf: "", label: "Colegiada COP Madrid", small: true },
     { num: "UAM", suf: "", label: "Máster en Psicología Clínica", small: true },
