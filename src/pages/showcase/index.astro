@@ -86,7 +86,7 @@ import { DESIGNS } from "../../data/designs";
     <header>
       <div class="wrap head-row">
         <div class="brand"><span class="mark">a</span> Ana Rosario <em>Luna</em></div>
-        <div class="head-meta"><span class="dot"></span> 8 direcciones de diseño · landing page</div>
+        <div class="head-meta"><span class="dot"></span> 9 direcciones de diseño · landing page</div>
       </div>
     </header>
 
@@ -94,11 +94,11 @@ import { DESIGNS } from "../../data/designs";
       <div class="wrap intro-grid">
         <div>
           <span class="eyebrow">Elige tu diseño favorito</span>
-          <h1>Ocho maneras <em>distintas</em> de presentar la <span class="acc">misma</span> consulta.</h1>
+          <h1>Nueve maneras <em>distintas</em> de presentar la <span class="acc">misma</span> consulta.</h1>
         </div>
         <div>
           <p class="intro-sub">
-            Recorre las ocho direcciones, ábrelas a pantalla completa y juega
+            Recorre las nueve direcciones, ábrelas a pantalla completa y juega
             con las paletas y tipografías desde el panel «Tweaks». Apunta tus
             notas y dime cuál te representa mejor.
           </p>
@@ -115,7 +115,7 @@ import { DESIGNS } from "../../data/designs";
       <div class="wrap">
         <div class="grid">
           {
-            DESIGNS.filter((d) => d.id !== "08").map((d) => (
+            DESIGNS.map((d) => (
               <a class="card" href={`/showcase/${d.id}`}>
                 <div class="preview">
                   <iframe src={`/designs/${d.id}/index.html`} loading="lazy" scrolling="no" tabindex="-1" title={`Vista previa ${d.name}`} />
@@ -153,7 +153,7 @@ import { DESIGNS } from "../../data/designs";
             <h3>Cómo usar esta página</h3>
             <p>
               Cada tarjeta abre la versión interactiva real (no una imagen).
-              Recorre las ocho, usa el panel «Tweaks» de la esquina para probar
+              Recorre las nueve, usa el panel «Tweaks» de la esquina para probar
               paletas, tipografías y formas, escribe tus notas y pulsa «Copiar
               selección» para enviármelas. Puedo mezclar elementos (por ejemplo:
               el hero de la 08 con la paleta de la 06) o evolucionar una sola
@@ -166,7 +166,7 @@ import { DESIGNS } from "../../data/designs";
 
     <footer class="foot-bar">
       <div class="wrap foot-row">
-        <span>Ana Rosario Luna · 8 direcciones de diseño · 2026</span>
+        <span>Ana Rosario Luna · 9 direcciones de diseño · 2026</span>
         <span>Para producción: una sola dirección · todas son responsive</span>
       </div>
     </footer>

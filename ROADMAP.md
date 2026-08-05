@@ -2,7 +2,7 @@
 
 Sitio web profesional para una psicóloga en España. Construido con **Astro 5 + Tailwind CSS v4**, islas de React mínimas. Todo el texto de UI en **español (España)**.
 
-El trabajo está dividido en fases. **Fase 1 es la prioridad actual**: que la clienta pueda ver los 8 diseños y jugar con paletas y tipografías. SEO y producción vienen después, una vez elegido el diseño.
+El trabajo está dividido en fases. **Fase 1 es la prioridad actual**: que la clienta pueda ver los 9 diseños y jugar con paletas y tipografías. SEO y producción vienen después, una vez elegido el diseño.
 
 ---
 
@@ -19,16 +19,16 @@ El trabajo está dividido en fases. **Fase 1 es la prioridad actual**: que la cl
 - [x] Integraciones: `@tailwindcss/vite` (Tailwind v4), `@astrojs/react`
 - [~] Fuentes: por ahora vía Google Fonts CDN (fidelidad exacta del mockup); migración a `@fontsource` → Fase 4
 - [x] Tweaks Bar controla CSS custom properties (colores + tipografías)
-- [x] `src/data/designs.ts` con metadatos de los 8 diseños
+- [x] `src/data/designs.ts` con metadatos de los 9 diseños
 
 ## Fase 1 — Showcase de diseños ✅ COMPLETADA (base)
 
 Galería interactiva para que la clienta elija. **Sin SEO.**
 
 - [x] `/` → redirige a `/showcase`
-- [x] `/showcase` — galería en grid con los 8 diseños (preview iframe + nombre + "Abrir diseño →")
-- [x] `/showcase/[id]` — cada diseño a pantalla completa (8 rutas estáticas)
-- [x] **Los 8 diseños** servidos con fidelidad total desde `public/designs/`
+- [x] `/showcase` — galería en grid con los 9 diseños (preview iframe + nombre + "Abrir diseño →")
+- [x] `/showcase/[id]` — cada diseño a pantalla completa (9 rutas estáticas)
+- [x] **Los 9 diseños** servidos con fidelidad total desde `public/designs/`
 - [x] **Tweaks Bar** (isla React `client:load`), flotante, frosted glass:
   - [x] Selector de paleta (4 paletas del brief + «Original»)
   - [x] Selector de tipografía (3 pares del brief + «Original»)
@@ -38,12 +38,12 @@ Galería interactiva para que la clienta elija. **Sin SEO.**
   - [x] Persistencia en `localStorage` (por diseño)
 - [x] Mapeo de paletas **por diseño** (cada uno traduce los roles de la paleta
       a sus propias variables: 03 `--forest/--moss`, 06 `--plum/--lavender`,
-      08 `--dusk/--rose`, etc.) → recoloreado fiel en los 8
+      08 `--dusk/--rose`, 09 `--teal/--mint`, etc.) → recoloreado fiel en los 9
 - [ ] Pendiente de pulido: `astro:transitions` entre diseños y repaso de
       fidelidad visual diseño por diseño con la clienta.
 
 **Entregable de Fase 1:** ✅ `npm run dev` → `http://localhost:4321` — la clienta
-recorre los 8 diseños, prueba paletas/fuentes, apunta notas y copia su selección.
+recorre los 9 diseños, prueba paletas/fuentes, apunta notas y copia su selección.
 
 ## Fase 2 — Decisión y consolidación
 
@@ -53,6 +53,7 @@ Una vez la clienta elige.
 - [ ] Fijar el diseño elegido como `index.astro` de producción
 - [ ] Limpiar diseños descartados (o conservarlos archivados)
 - [ ] Confirmar contenido real con la clienta (datos de contacto, bio, colegiado, precios)
+- [ ] **Decidir herramienta de reserva de citas** (ver «Decisiones pendientes»)
 
 ## Fase 3 — Sitio de producción + SEO
 
@@ -62,7 +63,10 @@ Una vez la clienta elige.
 - [ ] `@astrojs/sitemap` (excluir `/showcase`) + `robots.txt`
 - [ ] Blog con Content Collections (3 artículos markdown placeholder)
 - [ ] Páginas legales: `aviso-legal.astro`, `politica-privacidad.astro`
+  - [ ] Mencionar la herramienta de reserva elegida (RGPD: datos en EE. UU. si es Calendly)
 - [ ] Página 404 personalizada
+- [ ] **Integrar la reserva de citas** elegida en Fase 2 (embed en la web)
+- [ ] **Decidir CMS de contenidos** para que la clienta edite testimonios / FAQs / redes (ver «Decisiones pendientes»)
 
 ## Fase 4 — Rendimiento y despliegue
 

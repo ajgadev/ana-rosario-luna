@@ -88,6 +88,14 @@ const DESIGN_VARS: Record<string, DesignMap> = {
     "--ink": p.text, "--ink-2": p.textLight, "--mute": p.textLight,
     "--line": p.bgAlt, "--gold": p.accentLight,
   }),
+  // 09 Minimal Teal
+  "09": (p) => ({
+    "--cream": p.bg, "--cream-2": p.bgAlt, "--blush": p.bgAlt,
+    "--teal": p.primaryDark, "--teal-2": p.text,
+    "--mint": p.accentLight, "--mint-2": p.primary,
+    "--coral": p.accent, "--coral-2": p.accent, "--copper": p.accent,
+    "--ink-2": p.textLight, "--mute": p.textLight, "--line": p.bgAlt,
+  }),
 };
 
 // Fallback genérico (cubre nombres comunes) por si se añade un diseño nuevo.

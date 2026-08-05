@@ -7,7 +7,7 @@ Sitio en **español de España**. Construido para una amiga del usuario.
 
 - **`ROADMAP.md`** es la fuente de verdad del plan por fases y del progreso.
   Léelo al empezar cada sesión y mantén sus checkboxes al día.
-- Fase actual: **Fase 1 completada** (showcase de 8 diseños + Tweaks Bar).
+- Fase actual: **Fase 1 completada** (showcase de 9 diseños + Tweaks Bar).
   SEO y sitio de producción son fases posteriores — **no** añadir SEO todavía.
 - El brief original está en `ana_build_prompt.md`.
 
@@ -28,12 +28,17 @@ npm run dev -- --host   # exponer en la red local (revisión desde el móvil)
 
 ## Arquitectura del showcase (decisión clave)
 
-Para revisión rápida y 100% fiel, **los 8 diseños NO se han portado a
+Para revisión rápida y 100% fiel, **los 9 diseños NO se han portado a
 componentes Astro todavía**. En su lugar:
 
 - Los mockups originales se sirven tal cual desde `public/designs/<id>/`
   (Diseño 01 = app React+Babel con `styles.css`/`app.jsx`/`tweaks-panel.jsx`;
-  02–08 = HTML autónomo con `<style>`/`<script>` inline).
+  02–09 = HTML autónomo con `<style>`/`<script>` inline).
+  Los diseños nuevos se importan del proyecto de Claude Design vía el MCP
+  `claude_design` (`DesignSync`), copiando el HTML tal cual a
+  `public/designs/<id>/index.html`.
+  El proyecto de Design tiene además `10 Lavender Sky` y `11 Peach Sage`:
+  **descartadas** por ser la misma maqueta que la 09 con otro `:root`.
 - `src/pages/showcase/[id].astro` muestra cada diseño a pantalla completa en un
   `<iframe id="design-frame">` y superpone `<TweaksBar client:load>`.
 - `src/pages/showcase/index.astro` = galería (datos en `src/data/designs.ts`).

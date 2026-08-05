@@ -94,6 +94,16 @@ export const DESIGNS: Design[] = [
     props: ["Cormorant + Geist", "Azul atardecer + rosa", "Split-screen hero", "Servicios oscuros"],
     sections: "11 secciones",
   },
+  {
+    id: "09",
+    name: "Minimal Teal",
+    title: "Verde minimalista",
+    pill: "Minimal",
+    desc: "Hero centrado tipo póster con nombre a gran escala, franja de datos y tarjetas redondeadas sobre crema. Verde profundo + coral y menta: la opción más limpia y directa, pensada para sesiones online.",
+    swatches: ["#F6EFE7", "#173D38", "#E8916A", "#D9ECE6"],
+    props: ["Fraunces + Manrope", "Verde · coral · menta", "Hero centrado", "Cards redondeadas"],
+    sections: "11 secciones",
+  },
 ];
 
 export const getDesign = (id: string) => DESIGNS.find((d) => d.id === id);
