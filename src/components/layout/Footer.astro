@@ -1,0 +1,19 @@
+---
+import Container from "../ui/Container.astro";
+import SocialLinks from "../ui/SocialLinks.astro";
+import { SITE } from "../../data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line pb-7 pt-12">
+  <Container class="flex flex-wrap items-center justify-between gap-4 text-[12.5px] text-ink-soft">
+    <span>© {year} {SITE.name} · {SITE.role}</span>
+    <div class="flex flex-wrap items-center gap-5">
+      <SocialLinks />
+      <a href={`mailto:${SITE.email}`} class="hover:text-accent">{SITE.email}</a>
+      <!-- TODO Fase 3: enlazar /politica-privacidad -->
+      <a href="#" class="hover:text-accent">Privacidad</a>
+    </div>
+  </Container>
+</footer>

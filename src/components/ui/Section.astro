@@ -1,0 +1,26 @@
+---
+type Tone = "default" | "alt" | "dark";
+
+interface Props {
+  id?: string;
+  tone?: Tone;
+  class?: string;
+  "aria-labelledby"?: string;
+}
+
+const { id, tone = "default", class: className, ...attrs } = Astro.props;
+
+const toneClasses: Record<Tone, string> = {
+  default: "",
+  alt: "bg-bg-alt",
+  dark: "bg-primary text-bg",
+};
+---
+
+<section
+  id={id}
+  class:list={["py-[72px] md:py-28", toneClasses[tone], className]}
+  {...attrs}
+>
+  <slot />
+</section>

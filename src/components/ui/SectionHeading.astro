@@ -1,0 +1,27 @@
+---
+import Kicker from "./Kicker.astro";
+
+interface Props {
+  kicker: string;
+  title: string;
+  /** id del <h2>, para enlazarlo con aria-labelledby en la sección. */
+  id?: string;
+  subtitle?: string;
+  align?: "left" | "center";
+  class?: string;
+}
+
+const { kicker, title, id, subtitle, align = "left", class: className } = Astro.props;
+---
+
+<header class:list={[align === "center" && "text-center", className]}>
+  <Kicker>{kicker}</Kicker>
+  <h2 id={id} class="mt-3"><Fragment set:html={title} /></h2>
+  {
+    subtitle && (
+      <p class:list={["mt-4 max-w-[44ch]", align === "center" && "mx-auto"]}>
+        {subtitle}
+      </p>
+    )
+  }
+</header>

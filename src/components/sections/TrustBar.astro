@@ -1,0 +1,22 @@
+---
+import Container from "../ui/Container.astro";
+import { STATS } from "../../data/stats";
+---
+
+<section aria-label="Datos de la consulta" class="border-y border-line py-9">
+  <Container>
+    <dl class="grid grid-cols-2 gap-7 text-center md:grid-cols-4 md:gap-6">
+      {
+        STATS.map((stat) => (
+          <div class="flex flex-col-reverse">
+            <dt class="mt-1.5 text-xs tracking-[0.02em] text-ink-soft">{stat.label}</dt>
+            <dd class="font-serif text-[32px] text-primary">
+              {stat.value}
+              <span class="text-accent">{stat.suffix}</span>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </Container>
+</section>

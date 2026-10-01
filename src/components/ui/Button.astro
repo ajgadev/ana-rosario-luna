@@ -1,0 +1,30 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Variant = "solid" | "outline" | "soft";
+
+interface Props extends HTMLAttributes<"a"> {
+  href: string;
+  variant?: Variant;
+}
+
+const { href, variant = "solid", class: className, ...attrs } = Astro.props;
+
+const variants: Record<Variant, string> = {
+  solid: "bg-primary text-bg hover:bg-primary-deep hover:-translate-y-px",
+  outline: "border-[1.5px] border-primary text-primary hover:bg-primary hover:text-bg",
+  soft: "bg-soft text-primary hover:bg-soft-strong hover:text-bg",
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    "inline-flex items-center gap-2 rounded-full px-[22px] py-3 text-[13px] font-bold tracking-[0.02em] transition duration-200",
+    variants[variant],
+    className,
+  ]}
+  {...attrs}
+>
+  <slot />
+</a>

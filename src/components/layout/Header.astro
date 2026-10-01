@@ -1,0 +1,75 @@
+---
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+import Star from "../ui/Star.astro";
+import { NAV_LINKS, SITE } from "../../data/site";
+---
+
+<header class="sticky top-0 z-40 border-b border-line bg-bg py-4">
+  <Container class="flex items-center justify-between gap-6">
+    <a href="#" class="flex items-center gap-2.5 font-serif text-[19px] text-primary">
+      <Star />
+      {SITE.name}
+    </a>
+
+    <nav aria-label="Principal" class="hidden gap-[30px] text-[13.5px] font-semibold text-ink-soft min-[861px]:flex">
+      {NAV_LINKS.map((link) => <a href={link.href} class="hover:text-accent">{link.label}</a>)}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <Button
+        href={SITE.booking.url}
+        target="_blank"
+        rel="noopener"
+        data-booking
+        class="max-[420px]:hidden"
+      >
+        Reservar cita
+      </Button>
+
+      <!-- Menú móvil sin JS: <details> nativo -->
+      <details class="group relative min-[861px]:hidden">
+        <summary
+          class="grid size-11 cursor-pointer list-none place-items-center rounded-full bg-soft text-primary [&::-webkit-details-marker]:hidden"
+          aria-label="Abrir menú"
+        >
+          <svg class="size-5 group-open:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"></path>
+          </svg>
+          <svg class="hidden size-5 group-open:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"></path>
+          </svg>
+        </summary>
+        <nav
+          aria-label="Principal (móvil)"
+          class="absolute right-0 z-50 mt-3 flex w-56 flex-col rounded-2xl border border-line bg-bg p-2 text-[15px] font-semibold shadow-[0_20px_40px_-20px_rgba(43,38,48,0.35)]"
+        >
+          {
+            NAV_LINKS.map((link) => (
+              <a href={link.href} class="rounded-xl px-4 py-3 text-primary hover:bg-bg-alt" data-close-menu>
+                {link.label}
+              </a>
+            ))
+          }
+          <a
+            href={SITE.booking.url}
+            target="_blank"
+            rel="noopener"
+            class="mt-1 rounded-xl bg-primary px-4 py-3 text-center text-bg hover:bg-primary-deep"
+            data-booking
+            data-close-menu
+          >
+            Reservar cita
+          </a>
+        </nav>
+      </details>
+    </div>
+  </Container>
+</header>
+
+<script>
+  // Mejora: cerrar el menú móvil al elegir un enlace.
+  document.querySelectorAll<HTMLElement>("[data-close-menu]").forEach((link) =>
+    link.addEventListener("click", () => link.closest("details")?.removeAttribute("open")),
+  );
+</script>

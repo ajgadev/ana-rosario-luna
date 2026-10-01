@@ -1,0 +1,72 @@
+---
+// Ventana modal con el calendario de reservas (Calendly).
+// Cualquier enlace con `data-booking` la abre. Sin JS, el enlace abre
+// Calendly en una pestaña nueva. El iframe solo se carga al abrirla, así
+// no se cargan cookies de terceros hasta que la persona lo pide.
+import { SITE } from "../../data/site";
+
+const bookingUrl = new URL(SITE.booking.url);
+bookingUrl.searchParams.set("hide_gdpr_banner", "1");
+// Los colores solo se aplican en planes de pago de Calendly; en el gratuito se ignoran.
+bookingUrl.searchParams.set("primary_color", "b0617f");
+bookingUrl.searchParams.set("text_color", "2b2630");
+bookingUrl.searchParams.set("background_color", "f8f5fa");
+---
+
+<dialog
+  id="booking-dialog"
+  aria-labelledby="booking-title"
+  class="m-auto h-[min(90dvh,760px)] w-[min(100%-24px,1000px)] max-w-none overflow-hidden rounded-card border border-line bg-bg p-0 text-primary backdrop:bg-primary-deep/60 backdrop:backdrop-blur-sm"
+  data-booking-url={bookingUrl.toString()}
+>
+  <div class="flex h-full flex-col">
+    <div class="flex items-center justify-between gap-4 border-b border-line px-5 py-3">
+      <h2 id="booking-title" class="font-serif text-xl">Reserva tu cita</h2>
+      <button
+        type="button"
+        class="grid size-10 cursor-pointer place-items-center rounded-full bg-soft text-primary transition-colors hover:bg-soft-strong hover:text-bg"
+        aria-label="Cerrar"
+        data-booking-close
+      >
+        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+    <iframe title="Calendario de reservas" class="min-h-0 w-full flex-1 border-0" loading="lazy"></iframe>
+  </div>
+</dialog>
+
+<style>
+  /* Bloquea el scroll de la página mientras el diálogo está abierto. */
+  :global(html:has(#booking-dialog[open])) {
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("#booking-dialog");
+
+  if (dialog && typeof dialog.showModal === "function") {
+    const iframe = dialog.querySelector("iframe")!;
+
+    document.querySelectorAll<HTMLAnchorElement>("[data-booking]").forEach((link) =>
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (!iframe.src) {
+          const url = new URL(dialog.dataset.bookingUrl!);
+          url.searchParams.set("embed_domain", location.host);
+          url.searchParams.set("embed_type", "Inline");
+          iframe.src = url.toString();
+        }
+        dialog.showModal();
+      }),
+    );
+
+    dialog.querySelector("[data-booking-close]")?.addEventListener("click", () => dialog.close());
+    // Cerrar al pulsar fuera (en el backdrop).
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+</script>

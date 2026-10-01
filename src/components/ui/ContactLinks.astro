@@ -1,0 +1,25 @@
+---
+import { SITE } from "../../data/site";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const linkClass =
+  "border-b border-transparent text-primary transition-colors duration-200 hover:border-accent hover:text-accent";
+---
+
+<div
+  class:list={[
+    "flex flex-wrap items-center justify-center gap-[18px] font-semibold text-primary",
+    className,
+  ]}
+>
+  <a href={`mailto:${SITE.email}`} class={linkClass}>{SITE.email}</a>
+  <span class="h-4 w-px bg-line" aria-hidden="true"></span>
+  <a href={SITE.whatsapp.url} class={linkClass} target="_blank" rel="noopener">
+    WhatsApp: {SITE.whatsapp.display}
+  </a>
+</div>

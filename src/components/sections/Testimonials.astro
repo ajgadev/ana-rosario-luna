@@ -1,0 +1,16 @@
+---
+import Section from "../ui/Section.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import TestimonialCard from "./TestimonialCard.astro";
+import { TESTIMONIALS } from "../../data/testimonials";
+---
+
+<Section id="testimonios" aria-labelledby="testimonios-title">
+  <Container class="reveal">
+    <SectionHeading id="testimonios-title" kicker="Testimonios" title="Lo que cuentan mis pacientes." />
+    <div class="mt-12 grid gap-3.5 min-[921px]:grid-cols-3">
+      {TESTIMONIALS.map((t) => <TestimonialCard {...t} />)}
+    </div>
+  </Container>
+</Section>

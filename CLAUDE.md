@@ -7,14 +7,15 @@ Sitio en **español de España**. Construido para una amiga del usuario.
 
 - **`ROADMAP.md`** es la fuente de verdad del plan por fases y del progreso.
   Léelo al empezar cada sesión y mantén sus checkboxes al día.
-- Fase actual: **Fase 1 completada** (showcase de 9 diseños + Tweaks Bar).
-  SEO y sitio de producción son fases posteriores — **no** añadir SEO todavía.
+- Fase actual: **Fase 2 en curso**. La clienta eligió **Diseño 09 + paleta
+  Lavender & Stone + Fraunces/Manrope**; ya está portado a `/` como landing.
+  SEO es Fase 3 — **no** añadir SEO todavía.
 - El brief original está en `ana_build_prompt.md`.
 
 ## Comandos
 
 ```bash
-npm run dev      # http://localhost:4321 (/ redirige a /showcase)
+npm run dev      # http://localhost:4321 (/ = landing, /showcase = archivo de diseños)
 npm run build    # build estático → ./dist
 npm run preview  # sirve ./dist
 npm run dev -- --host   # exponer en la red local (revisión desde el móvil)
@@ -26,7 +27,30 @@ npm run dev -- --host   # exponer en la red local (revisión desde el móvil)
   `@tailwindcss/vite` (no `@astrojs/tailwind`), **React 19** solo para islas.
 - TS estricto. El proyecto vive en la **raíz del repo** (no en subcarpeta).
 
-## Arquitectura del showcase (decisión clave)
+## Arquitectura de la landing (`/`)
+
+Una sola página (`src/pages/index.astro`) que solo compone secciones; navegación
+por anclas, sin routing cliente y **sin React** (FAQ y menú móvil con
+`<details>` nativo; solo scripts vanilla para reveal y envío del formulario).
+
+- `src/styles/global.css` — `@theme` con tokens **semánticos** (`bg`, `bg-alt`,
+  `primary`, `primary-deep`, `soft`, `accent`, `ink-soft`, `line`, `font-serif`,
+  `font-sans`, `radius-card`) + estilos base de h1–h3/p + `.reveal`
+  (solo oculta con `.js` en `<html>`).
+- `src/layouts/BaseLayout.astro` — `<head>`, fuentes (Google Fonts CDN), reveal.
+- `src/data/*.ts` — **todo el contenido** tipado (`site.ts` = nombre, email,
+  WhatsApp, nav; `services`, `process`, `testimonials`, `faqs`, `stats`).
+  Cambiar textos aquí, no en los componentes.
+- `src/components/ui/` — primitivas (`Container`, `Section`, `Button`, `Star`,
+  `Kicker`, `SectionHeading`, `ContactLinks`).
+- `src/components/layout/` — `Header`, `Footer`.
+- `src/components/sections/` — una por bloque del diseño 09 (+ subcomponentes
+  de tarjeta/ítem).
+- Formulario: Web3Forms, clave en `PUBLIC_WEB3FORMS_KEY` (ver `.env.example`).
+- Retrato en `src/assets/` (optimizado con `<Image />`); la copia de
+  `public/pictures/` sigue ahí porque la usa `/showcase/09`.
+
+## Arquitectura del showcase (archivo, `/showcase`)
 
 Para revisión rápida y 100% fiel, **los 9 diseños NO se han portado a
 componentes Astro todavía**. En su lugar:
@@ -74,5 +98,5 @@ properties sobre `iframe.contentDocument.documentElement` (mismo origen).
 
 ## Pendiente inmediato (ver ROADMAP)
 
-Revisión visual de los 8 diseños con la clienta → elegir diseño/paleta/fuente →
-Fase 2 (consolidación) → Fase 3 (producción + SEO).
+Clave de Web3Forms → revisión visual de `/` con la clienta → confirmar
+contenido real → Fase 3 (legales + SEO).

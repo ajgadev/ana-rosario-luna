@@ -1,0 +1,54 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+import Kicker from "../ui/Kicker.astro";
+import Star from "../ui/Star.astro";
+import ContactLinks from "../ui/ContactLinks.astro";
+import { SITE } from "../../data/site";
+
+interface Props {
+  /** Foto ambiente opcional; sin ella se muestra el degradado decorativo. */
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+
+const { image, imageAlt = "" } = Astro.props;
+---
+
+<section class="relative pb-24 pt-[68px] text-center">
+  <Container>
+    <Star size={32} class="mx-auto mb-[22px]" />
+    <Kicker class="mb-3.5">{SITE.role}</Kicker>
+    <h1 class="mx-auto max-w-[14ch]">Ana Rosario<br />Luna</h1>
+    <p class="mt-[22px] text-[15px] font-bold uppercase tracking-[0.14em]">{SITE.modality}</p>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <Button href={SITE.booking.url} target="_blank" rel="noopener" data-booking>
+        Reservar primera consulta
+      </Button>
+      <Button href="#sobre" variant="outline">Conoce más</Button>
+    </div>
+
+    <ContactLinks class="mt-[52px] text-[14.5px]" />
+    <p class="mt-[18px] text-[12.5px] font-bold uppercase tracking-[0.1em]">{SITE.audience}</p>
+
+    <div
+      class="relative mx-auto mt-[72px] aspect-[16/8] max-w-[900px] overflow-hidden rounded-card border border-line bg-[linear-gradient(120deg,var(--color-bg-alt)_0%,var(--color-bg-alt)_55%,var(--color-soft)_100%)]"
+    >
+      {
+        image && (
+          <Image
+            src={image}
+            alt={imageAlt}
+            class="absolute inset-0 size-full object-cover"
+            widths={[600, 900, 1800]}
+            sizes="(max-width: 948px) 100vw, 900px"
+            loading="eager"
+          />
+        )
+      }
+    </div>
+  </Container>
+</section>

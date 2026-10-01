@@ -1,0 +1,23 @@
+---
+import Section from "../ui/Section.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import ServiceCard from "./ServiceCard.astro";
+import { SERVICES } from "../../data/services";
+---
+
+<Section id="servicios" tone="alt" aria-labelledby="servicios-title">
+  <Container class="reveal">
+    <SectionHeading
+      id="servicios-title"
+      kicker="Servicios"
+      title="Acompañamiento a tu medida."
+      subtitle="Sesiones pensadas para adolescentes y adultos, siempre en formato virtual."
+      align="center"
+      class="mb-14"
+    />
+    <div class="grid gap-3.5 md:grid-cols-2">
+      {SERVICES.map((service) => <ServiceCard {...service} />)}
+    </div>
+  </Container>
+</Section>

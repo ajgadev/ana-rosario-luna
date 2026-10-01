@@ -1,0 +1,16 @@
+---
+import Section from "../ui/Section.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import ProcessStep from "./ProcessStep.astro";
+import { PROCESS_STEPS } from "../../data/process";
+---
+
+<Section id="proceso" aria-labelledby="proceso-title">
+  <Container class="reveal">
+    <SectionHeading id="proceso-title" kicker="Cómo trabajo" title="Tres pasos, sin sorpresas." />
+    <ol class="mt-14 grid gap-3.5 min-[821px]:grid-cols-3">
+      {PROCESS_STEPS.map((step, i) => <ProcessStep step={i + 1} {...step} />)}
+    </ol>
+  </Container>
+</Section>

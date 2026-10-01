@@ -1,0 +1,16 @@
+---
+import Section from "../ui/Section.astro";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import FaqItem from "./FaqItem.astro";
+import { FAQS } from "../../data/faqs";
+---
+
+<Section id="preguntas" tone="alt" aria-labelledby="preguntas-title">
+  <Container class="reveal grid gap-7 min-[881px]:grid-cols-[.7fr_1.3fr] min-[881px]:gap-14">
+    <SectionHeading id="preguntas-title" kicker="Preguntas" title="Dudas frecuentes." />
+    <div class="flex flex-col gap-2">
+      {FAQS.map((faq) => <FaqItem {...faq} />)}
+    </div>
+  </Container>
+</Section>

@@ -1,0 +1,15 @@
+---
+import type { Testimonial } from "../../data/testimonials";
+
+type Props = Testimonial;
+
+const { quote, author = "Testimonio anónimo", context } = Astro.props;
+---
+
+<figure class="flex flex-col gap-4 rounded-card bg-bg-alt p-[30px]">
+  <blockquote class="flex-1 font-serif text-lg leading-[1.4] text-primary">{quote}</blockquote>
+  <figcaption class="border-t border-line pt-3.5 text-[12.5px] text-ink-soft">
+    <strong class="block font-bold text-primary">{author}</strong>
+    {context}
+  </figcaption>
+</figure>

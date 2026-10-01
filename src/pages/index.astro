@@ -1,4 +1,32 @@
 ---
-// Durante la fase de revisión, la home redirige al showcase.
-return Astro.redirect("/showcase");
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import Hero from "../components/sections/Hero.astro";
+import TrustBar from "../components/sections/TrustBar.astro";
+import About from "../components/sections/About.astro";
+import Services from "../components/sections/Services.astro";
+import Process from "../components/sections/Process.astro";
+import Quote from "../components/sections/Quote.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import Faq from "../components/sections/Faq.astro";
+import Contact from "../components/sections/Contact.astro";
+import BookingDialog from "../components/booking/BookingDialog.astro";
 ---
+
+<BaseLayout>
+  <Header />
+  <main>
+    <Hero />
+    <TrustBar />
+    <About />
+    <Services />
+    <Process />
+    <Quote />
+    <Testimonials />
+    <Faq />
+    <Contact />
+  </main>
+  <Footer />
+  <BookingDialog />
+</BaseLayout>

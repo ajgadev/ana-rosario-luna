@@ -1,6 +1,6 @@
 # ROADMAP — Web de Ana Rosario Luna (Psicóloga)
 
-Sitio web profesional para una psicóloga en España. Construido con **Astro 5 + Tailwind CSS v4**, islas de React mínimas. Todo el texto de UI en **español (España)**.
+Sitio web profesional para una psicóloga en España. Construido con **Astro 6 + Tailwind CSS v4**, islas de React mínimas. Todo el texto de UI en **español (España)**.
 
 El trabajo está dividido en fases. **Fase 1 es la prioridad actual**: que la clienta pueda ver los 9 diseños y jugar con paletas y tipografías. SEO y producción vienen después, una vez elegido el diseño.
 
@@ -45,15 +45,20 @@ Galería interactiva para que la clienta elija. **Sin SEO.**
 **Entregable de Fase 1:** ✅ `npm run dev` → `http://localhost:4321` — la clienta
 recorre los 9 diseños, prueba paletas/fuentes, apunta notas y copia su selección.
 
-## Fase 2 — Decisión y consolidación
+## Fase 2 — Decisión y consolidación 🚧 EN CURSO
 
-Una vez la clienta elige.
-
-- [ ] Recoger feedback (qué diseño, qué paleta, qué tipografía, mezclas)
-- [ ] Fijar el diseño elegido como `index.astro` de producción
-- [ ] Limpiar diseños descartados (o conservarlos archivados)
+- [x] Recoger feedback → **Diseño 09 · paleta Lavender & Stone · Fraunces + Manrope**
+- [x] Fijar el diseño elegido como `index.astro` de producción (landing de una
+      página en componentes Astro: `components/{ui,layout,sections}` + `data/`)
+- [x] Diseños descartados conservados como archivo en `/showcase` (noindex)
+- [x] Formulario de contacto con **Web3Forms** (mejora progresiva, casilla RGPD)
+  - [ ] Crear la clave en web3forms.com con el email de Ana → `PUBLIC_WEB3FORMS_KEY` en `.env` y en Vercel
+- [ ] Revisión visual final de `/` frente a `/showcase/09` (desktop + móvil)
+- [ ] Foto ambiente del hero (ahora degradado; `Hero` acepta `image`)
 - [ ] Confirmar contenido real con la clienta (datos de contacto, bio, colegiado, precios)
-- [ ] **Decidir herramienta de reserva de citas** (ver «Decisiones pendientes»)
+- [~] **Herramienta de reserva de citas** → probando **Calendly** en modal
+      (`components/booking/BookingDialog.astro`, URL en `SITE.booking`).
+      ⚠️ Ahora apunta a una cuenta de prueba de Alejandro: cambiar por la de Ana.
 
 ## Fase 3 — Sitio de producción + SEO
 

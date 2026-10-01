@@ -1,0 +1,121 @@
+---
+import { SITE } from "../../data/site";
+
+// Clave pública de Web3Forms (se genera en web3forms.com con el email de destino).
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? "";
+
+// TODO Fase 3: cambiar a "/politica-privacidad" cuando exista la página.
+const privacyHref = "#";
+
+const inputClass =
+  "w-full rounded-[10px] border border-line bg-bg px-[13px] py-[11px] font-sans text-[14.5px] text-primary placeholder:text-ink-soft/70 focus:border-accent focus:outline-none";
+const labelClass = "mb-1.5 block text-[11px] font-bold uppercase tracking-[0.1em] text-ink-soft";
+---
+
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  class="mx-auto mt-14 max-w-[480px] rounded-card border border-line bg-bg-alt p-9 text-left"
+  data-contact-form
+>
+  <input type="hidden" name="access_key" value={accessKey} />
+  <input type="hidden" name="subject" value={`Nuevo mensaje desde la web · ${SITE.name}`} />
+  <input type="hidden" name="from_name" value="Web de Ana Rosario Luna" />
+  <!-- Honeypot anti-spam -->
+  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+  <div class="mb-4">
+    <label for="cf-name" class={labelClass}>Nombre</label>
+    <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Cómo te llamas" class={inputClass} />
+  </div>
+  <div class="mb-4">
+    <label for="cf-email" class={labelClass}>Email</label>
+    <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="tu@email.com" class={inputClass} />
+  </div>
+  <div class="mb-4">
+    <label for="cf-message" class={labelClass}>Mensaje</label>
+    <textarea
+      id="cf-message"
+      name="message"
+      rows="3"
+      required
+      placeholder="Cuéntame brevemente en qué puedo ayudarte"
+      class:list={[inputClass, "min-h-20 resize-y"]}></textarea>
+    <p class="mt-1.5 text-[12px] leading-snug">
+      Por tu privacidad, no incluyas información clínica detallada; lo hablaremos en sesión.
+    </p>
+  </div>
+  <!-- Información básica de protección de datos (1.ª capa, art. 13 RGPD).
+       La 2.ª capa es la política de privacidad completa. -->
+  <section
+    aria-labelledby="cf-privacy-title"
+    class="mb-4 rounded-[10px] border border-line bg-bg px-4 py-3.5 text-[11.5px] leading-[1.55] text-ink-soft [&_p]:text-[11.5px] [&_strong]:font-bold [&_strong]:text-primary"
+  >
+    <h3 id="cf-privacy-title" class="mb-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.1em] text-ink-soft">
+      Información básica sobre protección de datos
+    </h3>
+    <p>
+      <strong>Responsable:</strong> {SITE.name}. <strong>Finalidad:</strong> responder a tu consulta y,
+      si lo deseas, coordinar una primera sesión. <strong>Legitimación:</strong> tu consentimiento.
+      <strong>Destinatarios:</strong> Web3Forms, proveedor que gestiona el envío del formulario; no se cederán
+      datos a terceros salvo obligación legal. <strong>Derechos:</strong> acceso, rectificación, supresión,
+      oposición, limitación y portabilidad, escribiendo a
+      <a href={`mailto:${SITE.email}`} class="underline hover:text-accent">{SITE.email}</a>. Más información en la
+      <a href={privacyHref} class="underline hover:text-accent">política de privacidad</a>.
+    </p>
+    <p class="mt-2">
+      Si eres menor de 14 años, pide a tu madre, padre o tutor/a que escriba en tu nombre.
+    </p>
+  </section>
+
+  <label class="mb-4 flex items-start gap-2.5 text-[13px] leading-snug text-ink-soft">
+    <input type="checkbox" name="consentimiento" value="Sí" required class="mt-0.5 size-4 shrink-0 accent-primary" />
+    <span>
+      He leído la información sobre protección de datos y consiento el tratamiento de los datos que facilito,
+      incluidos los relativos a mi salud, para atender mi consulta.
+    </span>
+  </label>
+
+  <button
+    type="submit"
+    class="mt-1.5 w-full cursor-pointer rounded-full bg-primary p-3.5 text-[13.5px] font-bold text-bg transition-colors duration-200 hover:bg-primary-deep disabled:cursor-wait disabled:opacity-70"
+  >
+    Enviar mensaje
+  </button>
+  <p class="mt-3 min-h-5 text-center text-[13px]" role="status" aria-live="polite" data-form-status></p>
+</form>
+
+<script>
+  // Mejora progresiva: envío con fetch y feedback sin salir de la página.
+  // Sin JS, el formulario hace un POST normal a Web3Forms.
+  document.querySelectorAll<HTMLFormElement>("[data-contact-form]").forEach((form) => {
+    const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+    const status = form.querySelector<HTMLElement>("[data-form-status]")!;
+    const idleLabel = button.textContent;
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      button.disabled = true;
+      button.textContent = "Enviando…";
+      status.textContent = "";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error(result.message);
+
+        form.reset();
+        button.textContent = "Mensaje enviado ✓";
+        status.textContent = "Gracias. Te responderé en menos de 24 horas.";
+      } catch {
+        button.disabled = false;
+        button.textContent = idleLabel;
+        status.textContent = "No se ha podido enviar. Escríbeme por email o WhatsApp, por favor.";
+      }
+    });
+  });
+</script>

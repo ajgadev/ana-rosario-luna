@@ -1,0 +1,20 @@
+---
+import type { Faq } from "../../data/faqs";
+
+type Props = Faq;
+
+const { question, answer } = Astro.props;
+---
+
+<details class="group overflow-hidden rounded-2xl border border-line bg-bg">
+  <summary
+    class="flex cursor-pointer list-none items-center justify-between gap-4 px-[22px] py-5 text-[15.5px] font-bold text-primary [&::-webkit-details-marker]:hidden"
+  >
+    {question}
+    <span
+      class="grid size-[26px] shrink-0 place-items-center rounded-full bg-soft text-base text-primary transition duration-300 group-open:rotate-45 group-open:bg-accent group-open:text-white"
+      aria-hidden="true">+</span
+    >
+  </summary>
+  <p class="px-[22px] pb-5 text-[14.5px] leading-[1.6]">{answer}</p>
+</details>
