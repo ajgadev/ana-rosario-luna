@@ -18,9 +18,9 @@ export const SITE = {
     display: "+34 645 258 749",
     url: "https://wa.me/34645258749",
   },
-  /** Reserva de citas. ⚠️ Cuenta de PRUEBA (Alejandro): cambiar por la de Ana. */
+  /** Reserva de citas (Calendly de Ana). */
   booking: {
-    url: "https://calendly.com/alejandro-g-206/15min",
+    url: "https://calendly.com/anarosarioluna/30min",
   },
   quote: "No hace falta estar en la misma sala para sentirte escuchada de verdad.",
 } as const;

@@ -56,9 +56,8 @@ recorre los 9 diseños, prueba paletas/fuentes, apunta notas y copia su selecci�
 - [ ] Revisión visual final de `/` frente a `/showcase/09` (desktop + móvil)
 - [ ] Foto ambiente del hero (ahora degradado; `Hero` acepta `image`)
 - [ ] Confirmar contenido real con la clienta (datos de contacto, bio, colegiado, precios)
-- [~] **Herramienta de reserva de citas** → probando **Calendly** en modal
-      (`components/booking/BookingDialog.astro`, URL en `SITE.booking`).
-      ⚠️ Ahora apunta a una cuenta de prueba de Alejandro: cambiar por la de Ana.
+- [x] **Herramienta de reserva de citas** → **Calendly** de Ana en modal
+      (`components/booking/BookingDialog.astro`, URL en `SITE.booking`)
 
 ## Fase 3 — Sitio de producción + SEO
 
