@@ -25,7 +25,7 @@ export const SITE = {
   quote: "No hace falta estar en la misma sala para sentirte escuchada de verdad.",
 } as const;
 
-export type SocialNetwork = "linkedin";
+export type SocialNetwork = "linkedin" | "instagram";
 
 export interface SocialLink {
   network: SocialNetwork;
@@ -38,6 +38,11 @@ export const SOCIAL_LINKS: SocialLink[] = [
     network: "linkedin",
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/ana-rosario-luna-488a9328b",
+  },
+  {
+    network: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/terapiasinfrontera/",
   },
 ];
 

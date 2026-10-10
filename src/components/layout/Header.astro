@@ -6,9 +6,9 @@ import { NAV_LINKS, SITE } from "../../data/site";
 ---
 
 <header class="sticky top-0 z-40 border-b border-line bg-bg py-4">
-  <Container class="flex items-center justify-between gap-6">
-    <a href="#" class="flex items-center gap-2.5 font-serif text-[19px] text-primary">
-      <Star />
+  <Container class="flex items-center justify-between gap-3 sm:gap-6">
+    <a href="#" class="flex shrink-0 items-center gap-2.5 font-serif text-[17px] text-primary sm:text-[19px]">
+      <Star class="max-[379px]:hidden" />
       {SITE.name}
     </a>
 
@@ -16,15 +16,18 @@ import { NAV_LINKS, SITE } from "../../data/site";
       {NAV_LINKS.map((link) => <a href={link.href} class="hover:text-accent">{link.label}</a>)}
     </nav>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- En móvil el texto se acorta a «Reservar» para que quepa junto a la marca. -->
       <Button
         href={SITE.booking.url}
         target="_blank"
         rel="noopener"
         data-booking
-        class="max-[420px]:hidden"
+        aria-label="Reservar cita"
+        class="max-sm:px-4 max-sm:py-2.5"
       >
-        Reservar cita
+        <span class="sm:hidden">Reservar</span>
+        <span class="max-sm:hidden">Reservar cita</span>
       </Button>
 
       <!-- Menú móvil sin JS: <details> nativo -->
@@ -51,16 +54,6 @@ import { NAV_LINKS, SITE } from "../../data/site";
               </a>
             ))
           }
-          <a
-            href={SITE.booking.url}
-            target="_blank"
-            rel="noopener"
-            class="mt-1 rounded-xl bg-primary px-4 py-3 text-center text-bg hover:bg-primary-deep"
-            data-booking
-            data-close-menu
-          >
-            Reservar cita
-          </a>
         </nav>
       </details>
     </div>
