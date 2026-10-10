@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Section from "../ui/Section.astro";
 import Container from "../ui/Container.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
-import portrait from "../../assets/ana-portrait.jpeg";
+import portrait from "../../assets/ana-profile.jpeg";
 import { SITE } from "../../data/site";
 
 const meta = [
@@ -18,8 +18,8 @@ const meta = [
       <Image
         src={portrait}
         alt={`${SITE.name}, psicóloga sanitaria`}
-        class="absolute inset-0 size-full object-cover object-[50%_10%]"
-        widths={[400, 600, 900]}
+        class="absolute inset-0 size-full object-cover object-[50%_25%]"
+        widths={[320, portrait.width]}
         sizes="(max-width: 880px) 100vw, 470px"
       />
     </div>

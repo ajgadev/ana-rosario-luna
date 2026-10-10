@@ -12,9 +12,11 @@ interface Props {
   /** Foto ambiente opcional; sin ella se muestra el degradado decorativo. */
   image?: ImageMetadata;
   imageAlt?: string;
+  /** Encuadre de la foto (CSS object-position), p. ej. "30% 50%". */
+  imagePosition?: string;
 }
 
-const { image, imageAlt = "" } = Astro.props;
+const { image, imageAlt = "", imagePosition = "50% 50%" } = Astro.props;
 ---
 
 <section class="relative pb-24 pt-[68px] text-center">
@@ -43,9 +45,11 @@ const { image, imageAlt = "" } = Astro.props;
             src={image}
             alt={imageAlt}
             class="absolute inset-0 size-full object-cover"
+            style={{ objectPosition: imagePosition }}
             widths={[600, 900, 1800]}
             sizes="(max-width: 948px) 100vw, 900px"
             loading="eager"
+            fetchpriority="high"
           />
         )
       }
