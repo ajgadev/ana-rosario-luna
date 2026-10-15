@@ -22,4 +22,9 @@ export const TESTIMONIALS: Testimonial[] = [
       "Tenía un duelo sin afrontar y no lo sabía. Ana me ayudó en todo momento, fue muy comprensiva y me sentí siempre escuchado.",
     context: "Sesión virtual",
   },
+  {
+    quote:
+      "Llegar a este espacio fue encontrar un lugar donde reencontrarme conmigo misma, sentirme segura y acompañada. Durante cada sesión online construimos genuinamente un vínculo de confianza. Ana me acompañó con mucha sensibilidad y respeto. Todo el proceso fue muy valioso para mí. Estoy profundamente agradecida por su calidez, su compromiso y la manera tan humana en la que ejerce su profesión. Recomiendo su acompañamiento para quienes estén en busca de un espacio de escucha, respeto y genuino cuidado. Muchas gracias.",
+    context: "Sesión virtual",
+  },
 ];
